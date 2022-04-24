@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Divider, IconButton, InputBase, Paper } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
 import { update } from "../../redux/keywordSlice";
-import { getResult } from "../../redux/resultSlice";
+import { getAll, getResult } from "../../api/resultApi";
 
 const Search = () => {
 	const [keyword, setKeyword] = useState("");
@@ -16,7 +16,7 @@ const Search = () => {
 		e.preventDefault();
 
 		dispatch(update({ keyword }));
-		dispatch(getResult());
+		dispatch(getResult(keyword));
 	};
 
 	return (

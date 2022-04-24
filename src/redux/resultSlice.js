@@ -1,13 +1,6 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice } from '@reduxjs/toolkit';
 
-
-export const getResult = createAsyncThunk("result", async () => {
-    const res = await axios.get(
-        "http://localhost:5000/v1/butir/all"
-    );
-    return res.data;
-})
+import { getAll, getDetail, getResult } from '../api/resultApi';
 
 export const resultSlice = createSlice({
     name: "result",
@@ -19,6 +12,19 @@ export const resultSlice = createSlice({
     reducers: {
     },
     extraReducers: {
+        [getAll.pending]: (state, action) => {
+            state.pending = true;
+            state.error = false;
+        },
+        [getAll.fulfilled]: (state, action) => {
+            state.pending = false;
+            state.error = false;
+            state.result = action.payload;
+        },
+        [getAll.rejected]: (state, action) => {
+            state.pending = false;
+            state.error = true;
+        },
         [getResult.pending]: (state, action) => {
             state.pending = true;
             state.error = false;
@@ -32,7 +38,20 @@ export const resultSlice = createSlice({
             state.pending = false;
             state.error = true;
         },
-    }
+        [getDetail.pending]: (state, action) => {
+            state.pending = true;
+            state.error = false;
+        },
+        [getDetail.fulfilled]: (state, action) => {
+            state.pending = false;
+            state.error = false;
+            state.result = action.payload;
+        },
+        [getDetail.rejected]: (state, action) => {
+            state.pending = false;
+            state.error = true;
+        },
+    },
 });
 
 
