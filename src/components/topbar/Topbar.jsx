@@ -1,4 +1,10 @@
-import { AppBar, Box, Toolbar, Typography } from "@mui/material";
+import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material";
+import {
+	AccountCircle,
+	Brightness4,
+	CollectionsBookmark,
+	Settings,
+} from "@mui/icons-material";
 
 const TopBar = () => {
 	return (
@@ -8,9 +14,18 @@ const TopBar = () => {
 					<Typography>Kamus Pranata Komputer</Typography>
 				</Box>
 				<Box sx={{ display: "flex" }}>
-					<Typography>Setting Icon|</Typography>
-					<Typography>Dark Icon|</Typography>
-					<Typography>Account Icon</Typography>
+					<IconButton color="inherit">
+						<CollectionsBookmark />
+					</IconButton>
+					<IconButton color="inherit">
+						<Settings />
+					</IconButton>
+					<IconButton color="inherit">
+						<Brightness4 />
+					</IconButton>
+					<IconButton color="inherit">
+						<AccountCircle />
+					</IconButton>
 				</Box>
 			</Toolbar>
 		</AppBar>

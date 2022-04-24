@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
 export const keywordSlice = createSlice({
     name: "keyword",
@@ -11,7 +11,7 @@ export const keywordSlice = createSlice({
         update: (state, action) => {
             state.keyword = action.payload.keyword;
         }
-    }
+    },
 });
 
 

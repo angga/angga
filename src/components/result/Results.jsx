@@ -5,7 +5,7 @@ import DetailModal from "./DetailModal";
 import ResultTable from "./ResultTable";
 
 const Results = () => {
-	const keyword = useSelector((state) => state.keyword.keyword);
+	const { keyword } = useSelector((state) => state.keyword);
 
 	return (
 		<Box sx={{ width: "100%" }}>

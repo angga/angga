@@ -1,7 +1,4 @@
 import {
-	Box,
-	Collapse,
-	IconButton,
 	Paper,
 	Table,
 	TableBody,
@@ -10,40 +7,9 @@ import {
 	TableHead,
 	TablePagination,
 	TableRow,
-	Typography,
 } from "@mui/material";
 import { useState } from "react";
-
-const resultData = [
-	{
-		_id: "623dc8e6e7ce31d7c2973383",
-		kode: "I.A.1",
-		butir: "Melakukan Pemenuhan permintaan dan layanan Teknologi Informasi",
-		uraian: "Pemenuhan permintaan layanan teknologi informasi (TI)",
-		tahapan: "1. menerima permintaan layanan TI;",
-		satuan: "Laporan Pemenuhan permintaan dan layanan TI",
-		ak: "0.15",
-		batasan: "1 (satu) laporan per bulan",
-		pelaksana: "11",
-		bukti: "Laporan pemenuhan permintaan dan layanan TI mencakup namun",
-		contoh: "Andi, A.Md., Pranata Komputer Mahir, telah menyelesaikan beberapa",
-		kategori: "utama",
-	},
-	{
-		_id: "623dc8e6e7ce31d7c2973384",
-		kode: "I.A.1",
-		butir: "Melakukan Pemenuhan permintaan dan layanan Teknologi Informasi",
-		uraian: "Pemenuhan permintaan layanan teknologi informasi (TI)",
-		tahapan: "1. menerima permintaan layanan TI;",
-		satuan: "Laporan Pemenuhan permintaan dan layanan TI",
-		ak: "0.15",
-		batasan: "1 (satu) laporan per bulan",
-		pelaksana: "11",
-		bukti: "Laporan pemenuhan permintaan dan layanan TI mencakup namun",
-		contoh: "Andi, A.Md., Pranata Komputer Mahir, telah menyelesaikan beberapa",
-		kategori: "non-utama",
-	},
-];
+import { useSelector } from "react-redux";
 
 const columns = [
 	{ id: "category", label: "Kategori" },
@@ -55,6 +21,10 @@ const columns = [
 ];
 
 const ResultTable = () => {
+	const { result } = useSelector((state) => state.result);
+
+	const resultData = result.message ?? [];
+
 	const [page, setPage] = useState(0);
 	const [rowsPerPage, setRowsPerPage] = useState(10);
 

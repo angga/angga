@@ -1,21 +1,22 @@
-import { Divider, IconButton, InputBase, Paper } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Divider, IconButton, InputBase, Paper } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+
 import { update } from "../../redux/keywordSlice";
+import { getResult } from "../../redux/resultSlice";
 
 const Search = () => {
 	const [keyword, setKeyword] = useState("");
-	const key = useSelector((state) => state.keyword.keyword);
 	const dispatch = useDispatch();
 
-	// useEffect(() => {
-	// 	console.log(keyword);
-	// }, [keyword]);
+	const key = useSelector((state) => state.keyword.keyword);
 
-	const onSubmitHandler = (e) => {
+	const searchHandler = (e) => {
 		e.preventDefault();
+
 		dispatch(update({ keyword }));
+		dispatch(getResult());
 	};
 
 	return (
@@ -33,7 +34,7 @@ const Search = () => {
 				aria-label="search"
 				onClick={(e) => {
 					console.log("Search button pressed");
-					onSubmitHandler(e);
+					searchHandler(e);
 				}}
 			>
 				<SearchIcon />
@@ -49,7 +50,7 @@ const Search = () => {
 				onKeyDown={(e) => {
 					if (e.key === "Enter") {
 						console.log("enter key pressed");
-						onSubmitHandler(e);
+						searchHandler(e);
 					}
 				}}
 			/>
